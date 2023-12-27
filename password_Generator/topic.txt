@@ -1,0 +1,30 @@
+here we studied different types of hooks in react
+1. useEffect
+
+  useEffect(() => { 
+    passwordGenerator()
+  }, [length, numAllowed, charAllowed, passwordGenerator])
+2. useState
+3. useRef
+// copying password to clipboard
+// useRef hook of react
+const passowrdRef = useRef(null)
+const copyPassToClip = useCallback(() =>{
+  passowrdRef.current?.select()
+window.navigator.clipboard.writeText(password)
+},[password])
+4. useCallback
+  const passwordGenerator = useCallback(() => {
+    let pass = ""
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXXYZabcdefghijklmnopqrstuvwxyz"
+
+    if (numAllowed) str += "0123456789"
+    if (charAllowed) str += "!@#$%^&*()_{}[]<>?/`~"
+
+    for (let i = 1; i <= length; i++) {
+      let char = Math.floor(Math.random() * str.length + 1)
+      pass += str.charAt(char)
+    }
+    setPassword(pass)
+
+  }, [length, numAllowed, charAllowed, setPassword])
